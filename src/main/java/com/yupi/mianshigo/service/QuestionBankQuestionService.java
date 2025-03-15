@@ -5,14 +5,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.mianshigo.model.dto.questionBankQuestion.QuestionBankQuestionQueryRequest;
 import com.yupi.mianshigo.model.entity.QuestionBankQuestion;
+import com.yupi.mianshigo.model.entity.User;
 import com.yupi.mianshigo.model.vo.QuestionBankQuestionVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 题库服务
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
+ * @author <a href="https://github.com/sws">程序员</a>
  * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 public interface QuestionBankQuestionService extends IService<QuestionBankQuestion> {
@@ -50,4 +52,22 @@ public interface QuestionBankQuestionService extends IService<QuestionBankQuesti
      * @return
      */
     Page<QuestionBankQuestionVO> getQuestionBankQuestionVOPage(Page<QuestionBankQuestion> questionBankQuestionPage, HttpServletRequest request);
+
+    /**
+     * 批量添加题目到题库
+     * @param questionIdList
+     * @param questionBankId
+     * @param loginUser
+     */
+
+
+
+    void batchAddQuestionsToBank(List<Long> questionIdList, Long questionBankId, User loginUser);
+
+    /**
+     * 批量删除题目
+     * @param questionIdList
+     * @param questionBankId
+     */
+    void batchRemoveQuestionsFromBank(List<Long> questionIdList, Long questionBankId);
 }

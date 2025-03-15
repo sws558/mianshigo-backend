@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * 题目服务
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
+ * @author <a href="https://github.com/sws">程序员</a>
  * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 public interface QuestionService extends IService<Question> {
@@ -69,5 +69,19 @@ public interface QuestionService extends IService<Question> {
      */
 
      Page<Question> listQuestionByPage(QuestionQueryRequest questionQueryRequest);
+    /**
+     * 从 ES 查询题目
+     *
+     * @param questionQueryRequest
+     * @return
+     */
+    Page<Question> searchFromEs(QuestionQueryRequest questionQueryRequest);
+
+    /**
+     * 批量删除题目
+     * @param questionIdList
+     */
+    void batchDeleteQuestions(List<Long> questionIdList);
+
 
 }

@@ -1,25 +1,32 @@
 package com.yupi.mianshigo.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yupi.mianshigo.common.ErrorCode;
 import com.yupi.mianshigo.constant.CommonConstant;
+import com.yupi.mianshigo.exception.BusinessException;
 import com.yupi.mianshigo.exception.ThrowUtils;
 import com.yupi.mianshigo.mapper.QuestionBankMapper;
 import com.yupi.mianshigo.model.dto.questionBank.QuestionBankQueryRequest;
+import com.yupi.mianshigo.model.entity.Question;
 import com.yupi.mianshigo.model.entity.QuestionBank;
+import com.yupi.mianshigo.model.entity.QuestionBankQuestion;
 import com.yupi.mianshigo.model.entity.User;
 import com.yupi.mianshigo.model.vo.QuestionBankVO;
 import com.yupi.mianshigo.model.vo.UserVO;
 import com.yupi.mianshigo.service.QuestionBankService;
+import com.yupi.mianshigo.service.QuestionService;
 import com.yupi.mianshigo.service.UserService;
 import com.yupi.mianshigo.utils.SqlUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +38,7 @@ import java.util.stream.Collectors;
 /**
  * 题库服务实现
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
+ * @author <a href="https://github.com/sws">程序员</a>
  * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 @Service
@@ -40,6 +47,10 @@ public class QuestionBankServiceImpl extends ServiceImpl<QuestionBankMapper, Que
 
     @Resource
     private UserService userService;
+    @Resource
+    private QuestionService questionService;
+    @Resource
+    private QuestionBankService questionBankService;
 
     /**
      * 校验数据
@@ -160,5 +171,7 @@ public class QuestionBankServiceImpl extends ServiceImpl<QuestionBankMapper, Que
         questionBankVOPage.setRecords(questionBankVOList);
         return questionBankVOPage;
     }
+
+
 
 }

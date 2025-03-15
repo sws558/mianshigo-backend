@@ -5,14 +5,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.mianshigo.model.dto.questionBank.QuestionBankQueryRequest;
 import com.yupi.mianshigo.model.entity.QuestionBank;
+import com.yupi.mianshigo.model.entity.User;
 import com.yupi.mianshigo.model.vo.QuestionBankVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 题库服务
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
+ * @author <a href="https://github.com/sws">程序员</a>
  * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
  */
 public interface QuestionBankService extends IService<QuestionBank> {
@@ -50,4 +52,6 @@ public interface QuestionBankService extends IService<QuestionBank> {
      * @return
      */
     Page<QuestionBankVO> getQuestionBankVOPage(Page<QuestionBank> questionBankPage, HttpServletRequest request);
+
+
 }

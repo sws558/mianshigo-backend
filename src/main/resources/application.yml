@@ -1,6 +1,4 @@
-# 公共配置文件
-# @author <a href="https://github.com/liyupi">程序员鱼皮</a>
-# @from <a href="https://yupi.icu">编程导航知识星球</a>
+
 spring:
   application:
     name: minshigo-backend
@@ -26,18 +24,16 @@ spring:
     password: 123456
   # Redis 配置
   # todo 需替换配置，然后取消注释
-#  redis:
-#    database: 1
-#    host: localhost
-#    port: 6379
-#    timeout: 5000
+  redis:
+    database: 1
+    host: localhost
+    port: 6379
+    timeout: 5000
 #    password: 123456
   # Elasticsearch 配置
   # todo 需替换配置，然后取消注释
-#  elasticsearch:
-#    uris: http://localhost:9200
-#    username: root
-#    password: 123456
+  elasticsearch:
+    uris: http://localhost:9200
   # 文件上传
   servlet:
     multipart:
@@ -82,6 +78,13 @@ wx:
   open:
     appId: xxx
     appSecret: xxx
+# 热 key 探测
+hotkey:
+  app-name: mianshiya
+  caffeine-size: 10000
+  push-period: 1000
+  etcd-server: http://localhost:2379
+
 # 对象存储
 # todo 需替换配置
 cos:

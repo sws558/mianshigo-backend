@@ -3,8 +3,8 @@ package com.yupi.mianshigo.wxmp;
 /**
  * 微信公众号相关常量
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @author <a href="https://github.com/sws">程序员</a>
+ 
  **/
 public class WxMpConstant {
 

@@ -13,10 +13,7 @@ import com.yupi.mianshigo.common.ResultUtils;
 import com.yupi.mianshigo.constant.UserConstant;
 import com.yupi.mianshigo.exception.BusinessException;
 import com.yupi.mianshigo.exception.ThrowUtils;
-import com.yupi.mianshigo.model.dto.question.QuestionAddRequest;
-import com.yupi.mianshigo.model.dto.question.QuestionEditRequest;
-import com.yupi.mianshigo.model.dto.question.QuestionQueryRequest;
-import com.yupi.mianshigo.model.dto.question.QuestionUpdateRequest;
+import com.yupi.mianshigo.model.dto.question.*;
 import com.yupi.mianshigo.model.entity.Question;
 import com.yupi.mianshigo.model.entity.QuestionBankQuestion;
 import com.yupi.mianshigo.model.entity.User;
@@ -251,6 +248,23 @@ public class QuestionController {
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
     }
+    @PostMapping("/search/page/vo")
+    public BaseResponse<Page<QuestionVO>> searchQuestionVOByPage(@RequestBody QuestionQueryRequest questionQueryRequest,
+                                                                 HttpServletRequest request) {
+        long size = questionQueryRequest.getPageSize();
+        // 限制爬虫
+        ThrowUtils.throwIf(size > 200, ErrorCode.PARAMS_ERROR);
+        Page<Question> questionPage = questionService.searchFromEs(questionQueryRequest);
+        return ResultUtils.success(questionService.getQuestionVOPage(questionPage, request));
+    }
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    @PostMapping("/delete/batch")
+    public BaseResponse<Boolean> batchDeleteQuestions(@RequestBody QuestionBatchDeleteRequest questionBatchDeleteRequest, HttpServletRequest request) {
+        ThrowUtils.throwIf(questionBatchDeleteRequest == null, ErrorCode.PARAMS_ERROR);
+        questionService.batchDeleteQuestions(questionBatchDeleteRequest.getQuestionIdList());
+        return ResultUtils.success(true);
+    }
+
 
     // endregion
 }
