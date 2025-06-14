@@ -1,4 +1,4 @@
-# 🧠 智能面试刷题平台 —— 用 AI 让你秒过技术面！
+# 🧠 智能面试刷题平台 
 
 ![Build](https://img.shields.io/badge/build-passing-brightgreen) 
 ![License](https://img.shields.io/badge/license-MIT-blue)
